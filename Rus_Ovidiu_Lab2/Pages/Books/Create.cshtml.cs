@@ -39,7 +39,7 @@ namespace Rus_Ovidiu_Lab2.Pages.Books
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string[] selectedCategories)
         {
             var newBook = new Book();
             if (selectedCategories != null)

@@ -15,8 +15,6 @@ namespace Rus_Ovidiu_Lab2.Migrations
             migrationBuilder.AddColumn<int>(
                 name: "AuthorID",
                 table: "Book",
-                name: "PublisherID",
-                table: "Book",
                 type: "int",
                 nullable: true);
 
