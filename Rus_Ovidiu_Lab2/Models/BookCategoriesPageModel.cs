@@ -24,7 +24,7 @@ namespace Rus_Ovidiu_Lab2.Models
                 });
             }
         }
-        public void UpdateBookCategories(Nume_Pren_Lab2Context context,
+        public void UpdateBookCategories(Rus_Ovidiu_Lab2Context context,
             string[] selectedCategories, Book bookToUpdate)
         {
             if (selectedCategories == null)

@@ -55,7 +55,7 @@ PopulateAssignedCategoryData(_context, Book);
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(nt? id, string[] selectedCategories)
+        public async Task<IActionResult> OnPostAsync(int? id, string[] selectedCategories)
         {
             if (id == null)
             {

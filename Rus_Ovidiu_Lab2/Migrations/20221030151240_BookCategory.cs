@@ -14,7 +14,7 @@ namespace Rus_Ovidiu_Lab2.Migrations
 
             migrationBuilder.AddColumn<int>(
                 name: "AuthorID",
-                table: "Booa
+                table: "Book",
                 name: "PublisherID",
                 table: "Book",
                 type: "int",
