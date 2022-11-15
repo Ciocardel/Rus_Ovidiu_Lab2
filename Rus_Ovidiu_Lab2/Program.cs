@@ -9,8 +9,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Rus_Ovidiu_Lab2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Rus_Ovidiu_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Rus_Ovidiu_Lab2Context' not found.")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<LibraryIndentityContext>();
+builder.Services.AddDbContext<LibraryIndentityContext>(options =>
+
+options.UseSqlServer(builder.Configuration.GetConnectionString("Rus_Ovidiu_Lab2Context") ?? throw new InvalidOperationException("Connectionstring 'Rus_Ovidiu_Lab2Context' not found.")));
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+options.SignIn.RequireConfirmedAccount = true)
+ .AddEntityFrameworkStores<LibraryIndentityContext>();
 
 var app = builder.Build();
 
