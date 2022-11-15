@@ -25,10 +25,13 @@ namespace Rus_Ovidiu_Lab2.Pages.Borrowings
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Borrowing == null)
-            {
-                return NotFound();
-            }
+            var bookList = _context.Book
+                 .Include(b => b.Author)
+                 .Select(x => new
+                 {
+                     x.ID,
+                     BookFullName = x.Title + " - " + x.Author.LastName + " " + x.Author.FirstName
+                 });
 
             var borrowing =  await _context.Borrowing.FirstOrDefaultAsync(m => m.ID == id);
             if (borrowing == null)
@@ -36,8 +39,8 @@ namespace Rus_Ovidiu_Lab2.Pages.Borrowings
                 return NotFound();
             }
             Borrowing = borrowing;
-           ViewData["BookID"] = new SelectList(_context.Book, "ID", "ID");
-           ViewData["MemberID"] = new SelectList(_context.Member, "ID", "ID");
+           ViewData["BookID"] = new SelectList(bookList, "ID", "BookFullName");
+           ViewData["MemberID"] = new SelectList(_context.Member, "ID", "FullName");
             return Page();
         }
 
