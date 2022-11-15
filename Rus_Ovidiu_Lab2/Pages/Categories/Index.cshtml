@@ -20,8 +20,13 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Category) {
-        <tr>
+@foreach (var item in Model.CategoryData.Categories) {
+        string selectedRow = "";
+        if (item.ID == Model.CategoryID)
+        {
+                selectedRow = "table-success";
+            }
+        <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>

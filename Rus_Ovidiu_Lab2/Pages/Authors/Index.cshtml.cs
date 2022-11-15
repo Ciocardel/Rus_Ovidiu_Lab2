@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Rus_Ovidiu_Lab2.Data;
 using Rus_Ovidiu_Lab2.Models;
+using Rus_Ovidiu_Lab2.Models.ViewModels;
 
 namespace Rus_Ovidiu_Lab2.Pages.Authors
 {
@@ -18,6 +19,8 @@ namespace Rus_Ovidiu_Lab2.Pages.Authors
         {
             _context = context;
         }
+       
+
 
         public IList<Author> Author { get;set; } = default!;
 
