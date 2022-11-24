@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Rus_Ovidiu_Lab2.Data;
 using Rus_Ovidiu_Lab2.Models;
 
@@ -19,11 +20,16 @@ namespace Rus_Ovidiu_Lab2.Pages.Books
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet() 
         {
+            var authorList = _context.Author.Select(x => new
+            {
+                 x.ID,
+            FullName = x.LastName + " " + x.FirstName
+            });
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", 
                 "PublisherName");
-            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID",
+            ViewData["AuthorID"] = new SelectList(authorList, "ID",
                      "FullName");
 
             var book = new Book();
@@ -41,7 +47,7 @@ namespace Rus_Ovidiu_Lab2.Pages.Books
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync(string[] selectedCategories)
         {
-            var newBook = new Book();
+            var newBook = Book;
             if (selectedCategories != null)
             {
                 newBook.BookCategories = new List<BookCategory>();
